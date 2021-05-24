@@ -30,3 +30,12 @@ The variable DELETE-WIKI-BUFFERS is unbound.
 ```
 
 3 - alguns textos ainda estão com o nome de next
+
+4 - qual desses é de fato a minha init file?
+```
+$ find ~/ -type f -name "init.lisp"
+/home/pedro/.quicklisp/dists/quicklisp/software/acclimation-20200925-git/init.lisp
+/home/pedro/.quicklisp/dists/quicklisp/software/cl-gobject-introspection-20210124-git/src/init.lisp
+/home/pedro/common-lisp/nyxt/_build/quicklisp-client/dists/quicklisp/software/acclimation-20200925-git/init.lisp
+/home/pedro/common-lisp/nyxt/_build/quicklisp-client/dists/quicklisp/software/cl-gobject-introspection-20210124-git/src/init.lisp
+```
