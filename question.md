@@ -39,3 +39,10 @@ $ find ~/ -type f -name "init.lisp"
 /home/pedro/common-lisp/nyxt/_build/quicklisp-client/dists/quicklisp/software/acclimation-20200925-git/init.lisp
 /home/pedro/common-lisp/nyxt/_build/quicklisp-client/dists/quicklisp/software/cl-gobject-introspection-20210124-git/src/init.lisp
 ```
+
+
+5 - 
+
+```
+javascript:(function() {   const rate = prompt('Set the new playback rate', 4);   if (rate != null) {     const video = document.getElementsByTagName('video')[0];     video.playbackRate = parseFloat(rate);   } })();
+```
