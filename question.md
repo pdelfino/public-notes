@@ -27,4 +27,6 @@ The variable DELETE-WIKI-BUFFERS is unbound.
 					   all-buffers
 					   :key #'url)))
     (mapcar #'rpc-buffer-delete buffers-to-delete)))
-    ```
+```
+
+3 - alguns textos ainda estão com o nome de next
