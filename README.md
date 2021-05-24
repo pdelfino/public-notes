@@ -134,7 +134,7 @@ NIL
 * (asdf:load-asd "/home/pedro/common-lisp/nyxt/nyxt.asd")
 #<ASDF/FIND-SYSTEM:DEFINE-OP >
 #<ASDF/PLAN:SEQUENTIAL-PLAN {1003F64DD3}>
-* (ql:quickload :nyxt/gtk)
+* (ql:quickload :nyxt/gi-gtk)
 To load "nyxt/gtk":
   Load 1 ASDF system:
     nyxt/gtk
