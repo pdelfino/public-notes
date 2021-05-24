@@ -1,6 +1,11 @@
 
 ### Replicando a apresentação do FOSDEM 2020
 
+0 - Está quebrado o link:
+
+https://nyxt.atlas.engineer/static/video/fosdem-2021.mp4
+
+
 1 - Por que não consigo fazer:
 
 ```
