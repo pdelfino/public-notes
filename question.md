@@ -1,7 +1,7 @@
 
 ### Replicando a apresentação do FOSDEM 2020
 
-Por que não consigo fazer:
+1 - Por que não consigo fazer:
 
 ```
 CL-USER> (nyxt:set-url "https://ambrevar.xyz")
@@ -11,3 +11,20 @@ CL-USER> (nyxt:set-url "https://ambrevar.xyz")
 <INFO> [14:44:09] Loading "ht
 ```  
   
+2 - Por que não consigo criar em _real time_ isso aqui:
+
+
+The variable DELETE-WIKI-BUFFERS is unbound.
+   [Condition of type UNBOUND-VARIABLE]
+
+```
+(define-command delete-wiki-buffers ()
+  (let* ((all-buffers
+	  (alexandria:hash-table-values (buffers *interface*)))
+	 (buffers-to-delete (delete-if-not (lambda (u)
+					     (str:contains?
+					      "wikipedia.org"  u))
+					   all-buffers
+					   :key #'url)))
+    (mapcar #'rpc-buffer-delete buffers-to-delete)))
+    ```
