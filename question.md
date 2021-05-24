@@ -46,3 +46,17 @@ $ find ~/ -type f -name "init.lisp"
 ```
 javascript:(function() {   const rate = prompt('Set the new playback rate', 4);   if (rate != null) {     const video = document.getElementsByTagName('video')[0];     video.playbackRate = parseFloat(rate);   } })();
 ```
+
+;; This buffer is for text that is not saved, and for Lisp evaluation.
+;; To create a file, visit it with C-x C-f and enter text in its buffer.
+
+(define-bookmarklet-command hack-youtube-speed
+  "Change youtube videos speed beyond 3x"
+  "(function() {
+  const rate = prompt('Set the new playback rate', 2.5);
+  if (rate != null) {
+    const video = document.getElementsByTagName('video')[0];
+    video.playbackRate = parseFloat(rate);
+     }
+  })();")
+
