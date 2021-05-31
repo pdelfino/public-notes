@@ -135,12 +135,13 @@ NIL
 #<ASDF/FIND-SYSTEM:DEFINE-OP >
 #<ASDF/PLAN:SEQUENTIAL-PLAN {1003F64DD3}>
 * (ql:quickload :nyxt/gi-gtk)
-To load "nyxt/gtk":
+To load "nyxt/gi-gtk":
   Load 1 ASDF system:
-    nyxt/gtk
-; Loading "nyxt/gtk"
+    nyxt/gi-gtk
+; Loading "nyxt/gi-gtk"
 .....................................
-(:NYXT/GTK)
+(:NYXT/GI-GTK)
+
 * (nyxt:start)
 <INFO> [23:19:32] Listening to socket "/run/user/1000/nyxt/nyxt.socket".
 Nyxt version 2.0.0
