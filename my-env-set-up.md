@@ -1,25 +1,30 @@
 
 
-OS name+version:
+- OS name+version:
 Ubuntu 20.04.2 LTS
 
-Graphics card and driver:
-product: Iris Plus Graphics 640
-configuration: driver=i915 latency=0
+- Graphics card and driver:
+- product: Iris Plus Graphics 640
+- configuration: driver=i915 latency=0
 
-Desktop environment / Window manager name+version:
-Name: GNOME Shell 3.36.7
-Window manager's "showing the desktop" mode: OFF
+-Desktop environment / Window manager name+version:
+- Name: GNOME Shell 3.36.7
+- Window manager's "showing the desktop" mode: OFF
 
-How you installed Nyxt (Guix pack, package manager, build from source):
+- How you installed Nyxt (Guix pack, package manager, build from source):
 package manager
 
-Information from command copy-system-information:
-Nyxt version: 2-pre-release-7
-Renderer: GI-GTK
-Operating system kernel: Linux 5.8.0-53-generic
-Lisp implementation: SBCL 2.1.0.0.HEAD.1-46cb065
-Features: (WEBKIT2 WEBKIT2-2.30 WEBKIT2-TRACKING WEBKIT2-MUTE WEBKIT2-EMOJI
+-Information from command copy-system-information:
+
+- Nyxt version: 2-pre-release-7
+
+- Renderer: GI-GTK
+
+- Operating system kernel: Linux 5.8.0-53-generic
+
+-Lisp implementation: SBCL 2.1.0.0.HEAD.1-46cb065
+
+-Features: (WEBKIT2 WEBKIT2-2.30 WEBKIT2-TRACKING WEBKIT2-MUTE WEBKIT2-EMOJI
 WEBKIT2-MEDIA WEBKIT2-SANDBOXING GTK-3-22 GTK-3-20 GTK-3-18 GTK-3-16
 GTK-3-14 GTK-3-12 GTK-3-10 GTK-3-8 GTK-3-6 GTK-3-4 GTK GDK-3-22
 GDK-3-20 GDK-3-18 GDK-3-16 GDK-3-14 GDK-3-12 GDK-3-10 GDK-3-8
