@@ -1,0 +1,509 @@
+#+TITLE: Nyxt 2.0.0
+#+AUTHOR: By Pedro Delfino
+#+NYXT-VERSION: 2.0.0
+
+* 1 - Probably the question was: What is the Nyxt browser?
+
+John: The Nyxt browser is an experiment to see how we can re-imagine
+the browser interface and what kind of tools we can develop to enable
+people to effectively utilize the internet for the purposes of, you
+know, research and any type of knowledge work that they would be
+doing.
+
+So, we do a lot of things in the context of the chrome and the
+browser. The chrome is the User Interface. And we also provide a lot
+of tools for analyzing the content of documents and traversing
+documents in intelligent ways. That's kind of a short summary.  It is
+a browser designed to enable you to process the information on the
+internet. And navigating it as efficiently as possible.
+
+* 2 - Probably the question was: Do you use Nyxt on a daily basis?
+
+John: So, I actually do use Nyxt on a daily basis with one exception
+being Youtube. So, Youtube is kind of a pinpoint in Nyxt since it is a
+very heavy website. And our main engine right now, which is WebKit,
+does not handle it quite as well.
+
+There are alternative websites you can use, like Invidious, which is a
+different front-end for Youtube. But I have not set those up on my
+machines. I do not know if Pierre's usage is just like that, but for
+me is my daily.
+
+Pierre: Yeah, I use it as a default browser. For me, it has been
+extremely useful. I would only resort to other browsers for the very
+rare use cases in which Nyxt does not work. Like John mentioned
+Youtube.
+
+Well, John did not mention it, but in the future, we would like to fix
+this incompatibility issue by adding another web renderer/web engine
+which is based on blink used by [Google] Chrome. Then, ultimately, I
+would like to give the choice... I mean, I would like to fix this
+incompatibility issue permanently by allowing users to use the engine
+they want. So, they would not have this tight dependency on the web
+renderer.
+
+* 3 - Probably the question was: Is Nyxt designed for productivity? Or customization? What is Nyxt optimized for?
+
+John: Yes, so the first one aligns a lot with what I said earlier. The
+browser was designed to enable you to be productive. We built a whole
+bunch of little tools for that purpose.
+
+After working with it for some real-time, we realized that the real
+value proposition that enables productivity is the customizability of
+Nyxt. And this means that literally every parameter of Nyxt can be
+changed by the end-user. You can even do that while the program is
+running.
+
+So, that is why the slogan went from "Be productive" to "The internet
+on your terms". Because this emphasizes the control that you are given
+and the ability to engage with the internet how you want in a way that
+suits your workflows.
+
+We recognized that we cannot predict at every eventuality or potential
+on how people are going to need to interact with the content on the
+internet. So, instead, we give them a framework so that they can build
+whatever interaction method that they need.
+
+* 4 - Probably the question was: Conkeror seems to be similar to Nyxt in some ways. How would you compare Nyxt with Conkeror?
+
+John: So, I used Conkeror as well, a long time ago until the
+deprecation of the (inaudible). Well, I do not know how to pronounce
+it, I think it is pronounced as XULRunner (by Mozilla).
+
+And it was great. It was a good tool. But the biggest problem was that
+it was tightly coupled to a specific platform. And we have noticed
+this has happened many times before. For example, many extensions
+programmed for Firefox and many WebKit (inaudible) web browsers ceased
+to work when WebKit 2 came out.
+
+So, one of the huge differences in Nyxt is that we have gone through
+painstaking efforts to make sure we are not tightened to any specific
+platform. In the past, we demonstrated Nyxt running with both
+web-engine and WebKit. Even though these are completely distinct
+engines.
+
+So, what is the difference between Conkeror and Nyxt? Well, resilience
+is a breakage. And number two, everything is written in Common Lisp
+instead of Javascript. So, you get all the features from the Common
+Lisp languages such as writing macros, redefining things on the fly,
+and dynamically adding attributes to classes. Javascript can do some
+of these things, but it cannot do all of these things and not with the
+same expressiveness. At least that is what we believe.
+
+* 5 - Probably the question was: What about extensions such as Vimperator, Vimium, Vimari, and Chromemacs that simulate Vim and Emacs in the popular browsers such as Firefox, Safari, and Chrome?
+
+John: So, these plug-ins like vimperator, vimium, vimari... they are
+only part of the equation. They actually only usually cover
+link-hinting and navigation. And they do it in a rather simplified
+way. Since they are an extension, they are limited to being in
+Javascript more or less. And they run within a really specialized
+context. So, when you use Vimari or Vimium and you bring up the link
+hints, it is making a data structure that exposes in javascript and
+then it has a key listener, again in javascript, and you press a key
+and it navigates you to whatever link.
+
+In Nyxt, what we do is that we grab the contents of the link hints. So
+we query the page, it gives us all the clickable elements, returning a
+list that is then handled in Common Lisp. So, we can do all sorts of
+algorithms from fuzzy matching on the URLs outside of javascript. And
+we actually multithread those. This is stuff that is simply not
+possible strictly in Javascript.
+
+Now, it matters that we pull all this information to Lisp because we
+can transform it and integrate it to other components of Lisp. So, for
+example, with Vimari or Vimium or whatever, you do not have a
+javascript context. So you cannot say: "navigate to any link hinting
+in any tab".
+
+But, in Nyxt you can do that. You can say: "show me all the links that
+exist in all of my tabs". It will produce a composable list of them
+and you could fuzzy search all of them at the same time. So there is a
+huge advantage to bringing everything to a lisp image instead of
+keeping it in Javascript for that ground.
+
+* 6 - Probably the question was: What is the target audience for Nyxt?
+
+Pierre: So, the target audience is, well, a rather geek audience that
+we have. Mostly, tech-oriented users, power users, developers, and
+anyone who is really interested in collecting web content, analyzing
+web content. So, yeah, mostly tech-oriented user.
+
+But then, in the future, we would like to make Nyxt a bit more
+accessible. Actually, ultimately, we would like to make Nyxt very
+accessible to the point that it could possibly be used by anyone.
+
+Right now, for instance, we have a graphical customization
+interface. In the beginning, we could only customize it from the Lisp
+config file, which is really cool, right? Because you can program your
+browser. But is not really user-friendly. Now, we have a couple more
+of buttons and friendlier forward/backward buttons... You can also
+customize your default URL and start page with buttons. There is still
+a lot of work to do and ultimately we could have much more graphical
+customizations, much more menus, more mouse interactions, and so
+on. This is what we are aiming for.
+
+* 7 - Probably the question was: What about the web browser's competitive landscape? There are a lot of options, right?
+
+John: Yeah, there are a lot of options as long as you want a browser
+that just has tabs on a screen, a URL bar at the top, and bookmarks as
+a list. If you want everything else, there is no option. All browsers
+available look the same.
+
+It remembers me of a phrase from Henry Ford, who said: "You can have a
+model T in any color you want, as long as it is black". I really did
+not see any differentiation in the browser space. I also did not see
+any of them that were really focused on enabling the users to be more
+productive. There are attempts but none of them really hit the mark in
+my opinion.
+
+Pierre: (inaudible) I would say that some browsers maybe they can
+satisfy the needs of tech-oriented users, especially when it comes,
+for instance, to Qute browser (inaudible some part) very good in that
+area.
+
+I think they are focusing on the niche and maybe they would not try to
+go as far as empowering users with bigger data analysis features
+(inaudible).
+
+* 8 - Probably the question was: What is your view about the market/user share of web browsers? Is there an oligopoly or a monopoly? Is that a problem? Why?
+
+Pierre: Maybe the first thing that is quite our view at the moment is
+the hegemony of Chrome, Google Chrome, the navigator. Well, not such a
+long time ago, I think Firefox was almost dominating in some
+countries, such as Germany. It was quite a tough battleground for web
+browsers.
+
+But, today it seems that Google Chrome has won the battle. And I think
+we should really work against the monopoly here. We all remember the
+beginning of years the 2000s when there was a single browser, namely
+the internet explorer. Together with adobe flash, it was not exactly a
+pleasant experience for many users, especially the ones from
+non-windows platforms. They were having a hard time just browsing the
+internet which is crazy, right?
+
+The internet should be fully accessible for everyone. So, I think we
+should (inaudible). I think it is important for us to not fall in
+there again.
+
+Maybe something that John mentioned is that user interfaces in all
+browsers look the same. So, it feels that today the web experience is
+a very dumb down experience. It is a click experience and it feels
+like most users can only be passive on web browsing. This is sad, I
+would like to feel active when I am browsing the internet. That would
+be my opinion. What about you, John?
+
+John: I think you have touched on a lot of great points. And one that
+I would like to head to is that many listeners could think to
+themselves: "yes, but the Google Chrome source code is available, it
+is an open-source project".
+
+I would argue that Chrome is a "source available" project, not an
+open-source project. If you try to commit a change against the will of
+Google in the repository, you are going to find that this is
+impossible to do. And this represents a huge problem.
+
+Google Chrome by having so much market share, so much power, can
+unilaterally create new web standards. If Google Chrome says: "Ok, we
+are supporting this feature, now", then people are going to start
+putting that on their websites. And if this is accepted by any
+committee-specification whatsoever, now, anyone who is not using the
+Google Chrome engine cannot use these websites anymore. And they can
+bake any sorts of non-sense they want. So this is a huge risk for the
+greater free internet. It is actually a really big problem but it
+gives you the illusion, the comfort of open. But is not really open
+source.
+
+About the second thing that Pierre brought up, the [other] browsers
+treat their users as if they were incapable of doing anything but
+pointing and clicking. They do not give any control to improve things
+or to automate your work or analyze data on the internet.
+
+They are really just... I do not know how to put it but is... What I
+would consider as just a dumb terminal, it just displays
+information. It does not understand any information.
+
+Imagine if you are trying to consume books through photoshops or
+through (inaudible).. where you cannot search for text. So, you would
+need to open every page through the file open dialog. That is how it
+feels for me to browse the internet in another browser today.
+
+* 9 - (Probably the question was: hard to guess what was the question in Slovenian)
+
+John: They are all related though, in the end. They are all problems
+that manifest themselves in this ecosystem due to the structure and
+design of modern web browsers. An (inaudible - guardian?) makes sense
+when your tool is so primitive
+
+The UI of websites becomes more complex to handle the needs of the
+users because the browser interfaces are so infantile. What you have
+in your menu bar on your browser: quit, open, bookmark. You cannot
+even tell me what links exist on this page? You cannot even tell how
+my characters this page has?
+
+It is nothing. You cannot do anything. Of course, yeah, that's why
+this (wall guardians [?]), these platforms, they get build up. It is a
+way for a tool to get built. There is a powerful opportunity there, so
+the tool gets built.
+
+* 10 - (Probably the question was: hard to guess what was the question in Slovenian based on the answer)
+
+John: One thing that I wanted to touch upon that (someone? Yuri?)
+said, I think Google invests so much money on Chrome because there is
+an operational risk. Their core risk is the advertisement
+business. And once you got someone else calling the shots, you know,
+Mozilla committee foundation, something you do not control, they can
+make your business prohibitively difficult.
+
+In my opinion, from what I can tell, google chrome is just a vehicle
+for Google to track you and learn about you without having to use
+cookies. You always sign in to your chrome account everywhere you have
+been, everything you have done, everything you clicked. So they make a
+profile for you and they do not need to use any third-party trackers.
+
+And in fact, I think the evidence for this becomes more clear as
+Google proposes to do something with third-party cooking blocking. I
+cannot remember the exact details, but, basically, this would make it
+impossible for any advertisement entity besides Google to do this
+targeting advertisement.
+
+So it is just all part of the bigger pieces... Somebody there saw some
+calculations and decided: "You know what? We are going to make a web
+browser!". And they went all-in. You know, they went all-in on
+it. They have this kind of twisted vision of the internet where people
+just use the internet via a Google Chrome book. Everything is done on
+the browser. I mean, that is absurd. It really makes no sense for me,
+whatsoever, honestly. I do not even how it got any traction. But here
+we are haha.
+
+* 11 - (Probably the question was: hard to guess question - something about google being too powerful)
+
+John: Yeah, and you cannot even compete with them. They have got
+literally infinite money, they print money. For them is like... how
+can I say... it is not a direct contributor to their bottom line. They
+do not have to make money from chrome. They can develop chrome at a
+huge loss for as long as their want. And they just get the secondary
+benefit of the power. And there is no one way to compete with
+that. Like as I said, the death of that started with Internet Explorer
+who did exactly the same thing.
+
+Microsoft said: " you know what, we (inaudible), we want our platform
+to support our protocols, our whatever". They want to embed active-X
+controls for whatever reason. They want you to have to use their
+platform. They can do it at a loss because they are making their money
+elsewhere. You cannot compete with them. That is kind of how it goes.
+
+* 12 - (Probably the question was: another question - about the death of the web browser)
+
+I think, actually, the death of the web browser came a little bit
+earlier. I think it came out when the first version of Internet
+Explorer came out. I am not trying to say that internet explorer was a
+terrible browser and that was the death of the internet. Rather, that
+it was free and it came with an Operating System. Suddenly, it was
+impossible for anyone to have a (business) model to compete with the
+web browser. Why would you pay to install a web browser if your
+computer already comes with a free browser?
+
+That is huge friction in the way of adoption. And so that completely
+destroyed the business plan from Mozilla. In the interim, they kind of
+chug along with being supported by Google, having this default
+engine. That is all their make they money. Nothing has changed.
+
+In the past couple of years, you have seen them doing a whole bunch of
+experiments to redeem themselves, a VPN service, a Mail service... A
+whole bunch of things that are completely orthogonal to web
+browsing. And without much success. That is what I think is the reason
+for their layoffs. They invest a bunch of money and they do not get
+anything from it. So, now they are trying to cut their
+loss. Fortunately, that means a death of a company usually. But,
+(inaudible).
+
+* 13 - (Probably the question was: another question on the engine)
+
+Pierre: The current engine used by Nyxt is WebKit. More specifically,
+WebKit gi-gtk. (inaudible). And, well, we have a second engine which
+we partially support, but the implementations are still in their
+way. It is a Qute Web Engine which is a fork of blink used by Google
+Chrome.
+
+We started for WebKit for a couple of reasons. One is that we try to
+do something different and not fall for the monopoly of web
+renderers. And the second reason is because WebKit gi-gtk is actually
+quite pleasant to work with in terms of API. It is highly
+customizable, they export a lot of (inaudible)... A huge interface
+that gives a lot of control over what you can do with the
+rendering. So this is perfect for us because we want to give as much
+customizability as possible for our users.
+
+Now, to the second renderer qute web engine. Well, as we mentioned
+before, we also want to provide good compatibility for our users in
+the sense that they can, if one website does not work with web gi-gtk,
+they can always use the other web browser to surf the web. So it is a
+fallback anyway.
+
+John: Yeah, you can have multiples renderers simultaneously. It is not
+the easiest thing to do but it is possible, yeah.
+
+Pierre: There could be some limitations, though. We will see it. We
+still have to work on it. We have not tested everything.
+
+* 14 - (Probably the question was: some question - about lisp but
+mentioning atlas engineer's CloSure project)
+
+John: There is. It is called Closure and we put it in our repositories
+(with the "s", "j" is for the programming language). Why did we choose
+Common Lisp?
+
+Well, actually, Pierre and I debated quite a bit at the very beginning
+of the project. We thought about Racket and Guile.
+
+But, ultimately, Common Lisp standout, because is the most sort of
+"batteries-included lisp". It has got a lot of great libraries. It is
+very stable. The spec does not change. There is almost zero
+(inaudible).
+
+Anything that you write today is going to be useful for 30/40 years
+ahead. If you contrast that with javascript, you are going to have a
+lot of trouble running something written 5 years ago. Which is... I do
+not know... Is not a good way of running software to build an
+ecosystem in my opinion.
+
+* 15 - (Probably the question was: something about protocols)
+
+Pierre: We have been asking about the (inaudible) for protocol
+before. Like, there are other protocols IPFS, and this one I am a bit
+more familiar with. So, it is definitely on our roadmap to improve
+support for these different protocols. And, for instance, IPFS is
+still supported by maybe 1 or 2 browsers at the moment. It is a bit
+niched. it would be cool to add support there. It would also make Nyxt
+a bit more attractive to people looking for more exotic protocol.
+
+John: And there are other protocols too. Like Tor protocol, FTP
+protocol. I would like to add support for things like that. So that
+you do not have to pull another kind of program to interact with this
+kind of thing.
+
+I remember that in the past, 10 or 15 years ago, browsers used to have
+facilities for this kind of operation. I remember the first Konqueror,
+with the K, where you could manipulate directories with SSH, SSHFS, or
+FTP whatever... It was amazing how it loved to create that exact same
+experience that Nyxt can interact with. It can mount FTP, or whatever,
+and it is exactly as using (inaudible). That would be really cool. But
+we are not that yet.
+
+* 16 - (Probably the question was: And how is the project currently funded?)
+
+John: So there is this European Union program called "Next Generation
+Internet Initiative" and what they do is that they disperse the
+funding with organizations they interact with. We have been
+interacting with NLNet which is an organization founded in the
+Netherlands to support, well, this kind of things, such as open-source
+projects - you can visit their websites. And then we are also in the
+NGI0 program supported by the funding box. And they are located in
+Poland.
+
+So, basically, we set-up some milestones of things we want to achieve
+and then we go through, and we kind of justify how this supports the
+UE initiative, how it makes sense, and how it is actually an
+appropriate grant. And after we go to the whole approval process, we
+complete the milestones, verify that the milestones are completed then
+we get basically the dispersed funding. And this covers basically our
+food.
+
+* 17 - Probably the question was: how did the project start?
+
+John: So, when Pierre contacted me, we talked about, ok, we really
+love writing this software, but in order to really do that, without
+doing something else on the side, you have to become a business,
+right?
+
+Otherwise, you do have the day job and then you have got the side
+project. I know that I personally did not want to split my time that
+way. I have been doing side projects my whole life and I know it is
+exhausting. You have two things in-between in your head, you are
+working within two different environments and you just wanna to do one
+thing, and you want to do it well.
+
+So we founded a company and we thought about how we are going to
+financially support ourselves in this process? So, initially, we did
+some contracting thing. I went out and I found some contracts and we
+did those while working on the side on Nyxt.
+
+But it ended being a lot of the same thing. Pierre and I had normal
+jobs, and then we worked on Nyxt on the side because the contracting
+was taking a huge portion of the time. And then we started to think
+about how can we make Nyxt directly profitable. How can we make it
+such that our work directly aligns with becoming sustainable so that
+we can keep working on it and improving it to provide something for
+the community?
+
+And so just by great luck Pierre. Well, it is not great luck. It is
+obviously a bunch of work. Pierre is in a bunch of mail-lists, so
+somehow and someway he got contacted and heard about the NLNet
+grant. So we applied, thinking "ok, maybe we will get the grant". You
+know, this was kind of what we need to survive otherwise we are going
+to work this on the side. Luckily, we got it. We were very lucky in
+that respect, you know. We are very grateful for that.
+
+And then we kept working, working, working through that grant. We
+gotta figure something out, we gotta become (inaudible). So by the end
+of the grant, the NLNet people contacted saying: "hey, as we are
+winding down, we have some further people who can fund you". And we
+thought that was amazing, but what are the chances that we would be
+accepted again?
+
+As you can imagine, you need a lot of runaways to turn a browser into
+a sustainable product. Because to start a browser with a minimal
+viable browser, requires years of effort. So, we worked, worked,
+worked, and, now, we are really close to our 2.0 release.
+
+After our 2.0 release, we are going to have a pretty clearly settled
+API that we are going to slowly build of (inaudible). And this brings
+us to ours modernization plan and how Nyxt fits in with Atlas (the
+company).
+
+ Atlas is just the legal entity that represents Pierre, me, and
+ whoever is working for us. What Atlas will do is it will take Nyxt
+ hopefully, pending acceptance from the community with the users'
+ votings, and Atlas is going to do applications on top of Nyxt.
+
+Emacs, for example, has a bunch of applications that you might think
+of. Rest clients is an application for emacs. It is like a separate
+program, almost.
+
+We are not gonna cripple or limit or inhibit any way nyxt
+artificially. But we are going to do is build value on top of Nyxt in
+these applications and hopefully, the people like them, and this can
+turn into a sustainable business that is not relying just on research
+grants to get by. Because our ultimate goal is to be able to produce
+something for everybody for the benefit of everybody in a sustainable
+way such that we can do the best work that we wanna do. That is
+ultimately the only way.
+
+ If you are working on something on the side, you really do not have
+ enough hours on the day, honestly. Imagine if buying (inaudible) only
+ worked on weekends. Where would it be today?
+
+It would be nothing compared to what it is now. So we see it as a
+necessary step in terms of making an important project that we think
+will have a good impact on the world.
+
+* 18 - (Probably the question was: hard to guess question)
+
+John: There is something that I said at the beginning but that I would
+like to emphasize again. Nyxt is specifically a tool to empower
+internet users and that is why we say to "use the internet on your
+terms".
+
+The goal is to make something that is customizable for everyone
+because the internet is a huge, absolutely huge library, the biggest
+library of human knowledge we have ever seen. And we think that
+current browsers inhibit access to this knowledge base. It is like as
+if everyone has to read a book from a microscope and we want to get
+rid of the microscope and just send the book down from the person.
+
+Here you go...Here is... Do you want to turn a page with a fan? Go
+for. Do you want to read with green lights? Fine!  Here is the
+book. Here is the information. Just take what you need. We hope that
+this will carry on research and all sorts of knowledge workers to just
+do better work.
+
