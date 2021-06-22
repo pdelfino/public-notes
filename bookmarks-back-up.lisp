@@ -1,5 +1,4 @@
 (
-(:url "https://blog.samaltman.com/" :title "Sam Altman" :date "2021-06-06T17:51:30.740518Z" :tags ("altman" "multi" "sam" "tag" "teste"))
 (:url "https://calendar.google.com/calendar/u/0/r/week?pli=1" :title "Google Calendar - Week of May 23, 2021" :date "2021-05-27T00:45:31.050961Z" :tags ("calendar"))
 (:url "https://discourse.atlas.engineer/" :title "Atlas - A friendly community discussing developments and ideas for Nyxt." :date "2021-05-27T00:47:44.898990Z" :tags ("nyxt"))
 (:url "https://egghead.io/lessons/javascript-how-to-create-a-pull-request-on-github" :title "How to create a Pull Request on GitHub | egghead.io" :date "2021-05-27T00:50:00.281182Z" :tags ("github"))
@@ -19,6 +18,7 @@
 (:url "https://malisper.me/debugging-lisp-part-1-recompilation/" :title "Debugging Lisp Part 1: Recompilation - malisper.me" :date "2021-05-18T16:56:30.654104Z" :tags ("slime"))
 (:url "https://news.ycombinator.com/" :title "Hacker News" :date "2021-05-24T20:22:10.980543Z" :tags ("hacker"))
 (:url "https://nyxt.atlas.engineer/features" :title "Nyxt" :date "2021-05-27T00:46:31.640633Z" :tags ("nyxt"))
+(:url "https://nyxt.atlas.engineer/start" :title "Nyxt browser" :date "2021-06-22T18:32:38.692973Z" :tags ("help"))
 (:url "https://rainymood.com/" :title "Rainy Mood • #1 Rain Sounds • Sleep & Study" :date "2021-05-15T20:56:07.785639Z" :tags ("rainy"))
 (:url "https://reactgo.com/get-focused-element-javascript/" :title "How to get Currently Focused Element in JavaScript | Reactgo" :date "2021-06-11T13:32:16.443247Z" :tags ("js"))
 (:url "https://stackoverflow.com/users/9113679/pedro-delfino" :title "User Pedro Delfino - Stack Overflow" :date "2021-06-02T20:29:09.529564Z" :tags ("stackoverflow"))
@@ -27,6 +27,7 @@
 (:url "https://translate.google.com.br/" :title "Google Translate" :date "2021-05-16T19:07:44.339761Z" :tags ("translate"))
 (:url "https://webchat.freenode.net/#nyxt" :title "freenode's webchat" :date "2021-05-27T00:47:19.727818Z" :tags ("freenode"))
 (:url "https://wordcounter.net/" :title "WordCounter - Count Words & Correct Writing" :date "2021-06-08T14:36:21.705360Z" :tags ("count" "words"))
+(:url "www.cartola.com.br" :date "2021-06-22T18:30:22.136284Z")
 (:url "https://www.gnu.org/licenses/gpl-howto.html" :title "Como usar as licenças GNU para seu próprio software - Projeto GNU - Free Software Foundation" :date "2021-06-18T02:46:20.846121Z" :tags ("gnu" "keyboard" "typist"))
 (:url "https://www.gnu.org/software/gtypist/" :title "GNU Typist - GNU Project - Free Software Foundation" :date "2021-06-18T02:11:29.994343Z" :tags ("gnu" "typist"))
 (:url "https://www.goodreads.com/book/show/1175730.Object_Oriented_Programming_in_Common_LISP" :title "Object-Oriented Programming in Common LISP: A Programmer's Guide to Clos by Sonya E. Keene" :date "2021-06-10T02:38:34.228294Z" :tags ("lisp" "oop" "review"))
