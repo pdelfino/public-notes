@@ -1,4 +1,5 @@
-(defun urls-visited-over-threshold (threshold)
+
+(defun %urls-visited-over-threshold (threshold)
   "Return a pair '(number-of-visits URL) of all sites 
 which were visited more times than the threshold."
   (let*
@@ -11,12 +12,12 @@ which were visited more times than the threshold."
                                    history-entries-raw)))
     (remove-if-not #'(lambda (e) (> (car e) threshold)) pair-frequency-url)))
 
-(defun %list-bookmarks ()
+(defun %list-bookmarks ()  ; NOT WORKING WELL
   (mapcar #'(lambda (e) (quri:uri-host (url e)))
             (with-data-access (bookmarks (bookmarks-path (current-buffer)))
               bookmarks)))
 
-(defun is-url-new-to-bookmarks (url)
+(defun %is-url-new-to-bookmarks (url)
   "Return NIL if URL is already bookmarked or
 return the URL if it is new to the bookmark list."
   (let ((bookmarks-list (mapcar #'(lambda (e) (quri:uri-host (url e)))
@@ -26,18 +27,10 @@ return the URL if it is new to the bookmark list."
         nil
         url)))
 
-(defun %bookmark-add-frequent-visited-url (url title)
+(defun %bookmark-add-a-frequent-visited-url (url title)
   (bookmark-add (quri:uri url) :title title))
 
-(defun glue-together ()
-  (dolist (x  (urls-visited-over-threshold 10))
-    (format t "~&~S" x)
-    (if (is-url-new-to-bookmarks (second x)) (%bookmark-add-frequent-visited-url (second x) (third x)))))
-
-(defun draft ()         
-  (defun aux (url-left)
-    (cond ((null url-left) nil)
-          ((is-url-new-to-bookmarks (first url-left)) (cons (first url-left)
-                                                            (aux (rest url-left))))
-          (t (aux (cdr url-left)))))
-  (aux (mapcar #'second (urls-visited-over-threshold 1))))
+(defun bookmark-frequently-visited-urls ()
+  (dolist (url  (%urls-visited-over-threshold 10))
+    (format t "~&~S" url)
+    (if (%is-url-new-to-bookmarks (second url)) (%bookmark-add-a-frequent-visited-url (second url) (third url)))))
