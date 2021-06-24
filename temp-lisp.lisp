@@ -34,3 +34,7 @@ return the URL if it is new to the bookmark list."
   (dolist (url  (%urls-visited-over-threshold 10))
     (format t "~&~S" url)
     (if (%is-url-new-to-bookmarks (second url)) (%bookmark-add-a-frequent-visited-url (second url) (third url)))))
+
+(define-command show-clipboard ()
+  "Show the current clipboard."
+  (echo (ring-insert-clipboard (clipboard-ring *browser*))))
