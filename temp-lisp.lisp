@@ -145,3 +145,16 @@ included on the bookmarklist."
         (bookmark-url :url (render-url url-instance)))))
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+ (define-parenscript mozinha () (ps:chain document  (query-selector-all "[rel=prev]") 0 (click)) )
