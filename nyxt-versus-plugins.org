@@ -6,7 +6,7 @@
 
 After introducing Nyxt to some people, it is frequent to listen
 questions such as: /Why should I use Nyxt if I can use Vimium (or 'Vimari
-'Vrome 'Chromemacs 'Vimperator ...) in my favorite-popular-web-browser?/
+'Vrome 'Chromemacs 'Vimperator ...) in my-favorite-popular-web-browser?/
 
 This question is reasonable. Web browsers and their extensions are part of one's
 daily habits. If one happen to be productive using them, it just makes
@@ -38,11 +38,11 @@ illustrated by useful practical examples.
 * Differences
 
 1. Nyxt is fully customizable and extensible, plug-ins are
-not. Examples:
+   not. Examples:
    + In Nyxt, users can customize the alphabet used for
-link-hinting. It does not need to be the American alphabet. If the
-user is using a popular "QWERTY" keyboard, it could be changed to
-"qwertyasdfgzxcvb" to provide more ergonomics. Same for Dvorak keyboard.
+   link-hinting. It does not need to be the American alphabet. If the
+   user is using a popular "QWERTY" keyboard, it could be changed to
+   "qwertyasdfgzxcvb" to provide more ergonomics. Same for Dvorak keyboard.
    + Users can extend Nyxt creating their own modes, hooks, and commands.
    + Users can do all the changes mentioned above while the program is
    running which means live hackability.
