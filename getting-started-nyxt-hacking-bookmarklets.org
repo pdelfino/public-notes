@@ -1,0 +1,140 @@
+ #+TITLE: Getting Started on Nyxt Hacking: #1 Episode
+#+AUTHOR: By Pedro Delfino
+#+NYXT-VERSION: 2 Pre-release 2
+#+FILETAGS: :feature:
+
+* The series
+
+Hacking is an art and Nyxt hacking is one of its kind. Nyxt could be
+defined as minecraft for web browsing in the sense that it is an open
+world. Being a fully computable environment, the constraints are much
+more on the hacker's creativity than in the system itself.
+
+Some Nyxt users have already done impressive work. For instance, the
+[[https://github.com/atlas-engineer/nyxt/blob/master/documents/EXTENSIONS.org][extensions]]
+and config files exposed in
+[[https://discourse.atlas.engineer/t/casually-showing-off-my-config/74][discourse's
+Configuration Exposè]].
+
+Unfortunately, not all users are that independent and
+knowledgeable. Thus, this article has a beginner friendly approach. It
+assumes zero to narrow knowledge in the Nyxt unverse, which involves
+Nyxt source code itself, Common Lisp, SBCL, and Emacs. However, it
+does assume prior knowledge of Nyxt as a Graphical User Interface (GUI)
+user. Thus, the reader needs to have basic understanding on how to
+execute commands and navigate using Nyxt.
+
+In case you haven't, it is easy to reach that level. Start Nyxt, look
+for the "Tutorial" button on the starting page. Or click on the Execute icon (𝄘) and type "Tutorial".
+Then, read the tutorial, especially the first half.
+
+This is the first article of a triple series. Here, a bookmarklet is
+going to be built. On the second episode, a Nyxt command will be
+created. And, on the final and third one, a mode will be constructed.
+
+All the three constructions will be under the same domain: hacking
+youtube videos so that they can be played in a faster speed than the
+one allowed by YouTube's GUI.
+
+Why using YouTube as a guinea pig? Well, firstly, it fullfils the
+definition of what is a [[http://www.paulgraham.com/gba.html][hack]]:
+
+#+BEGIN_QUOTE
+It's called a hack when you do something in an ugly way. But when you
+do something so clever that you somehow beat the system, that's also
+called a hack. -- Paul Graham 
+#+END_QUOTE
+
+Secondly, because many new Nyxt users have problems loadings
+videos. This is so common that the Manual has a section on
+Troubleshooting. Thus, let's show that it is indeed to watch YouTube
+videos on Nyxt and even hack them. Thirdly, because YouTube is a big
+guy and even them need to bow for power users. Lastly, but not least,
+because this was my own very
+[[https://discourse.atlas.engineer/t/almost-hacking-youtube-videos-speed-on-nyxt/117][first]]
+hacking as a Nyxt user :)
+
+* Disclaimer
+
+There are multiple ways to do certain things on Nyxt and to use
+certain tools. To make things simple, this will be an opinionated 
+article striking for friendlyness for beginers. It is a jungle trail
+but you can always go into the wild.
+
+Emacs is a sensitive topic. All Nyxt hackers will probably end up using Emacs
+(or Vim). However, Emacs has a steep learning curve. Thus, the article
+will offer two explanations one using Emacs and the other without it.
+
+* Developer Manual
+
+There are four ways to install Nyxt. One of them is downloading the
+stable version which is available
+[[https://nyxt.atlas.engineer/download][here]].
+
+The othre three ways of installing Nyxt are described in the
+[[https://github.com/atlas-engineer/nyxt/blob/master/documents/README.org#standard-developer-installation
+][Nyxt Developer Readme]], they are via Nix, Guix, or using the Standard Developer
+Installation. Now, please read and follow the instructions of the
+Developer Manual. Installing quicklisp is listed as optional but it is
+strongly recommended.
+
+* Sanity checks
+
+After following the instructions, there are some sanity checks that
+can be done to see if the installation was succesful.
+
+  1. Open the terminal, and run ~$ sbcl~. It should return:
+  #+BEGIN_SRC txt
+  This is SBCL 2.0.1, an implementation of ANSI Common Lisp.
+  #+END_SRC 
+
+  2. With SBCL running, type:
+
+  #+BEGIN_SRC lisp
+  * (member :quicklisp *features*)
+  (:QUICKLISP :SB-BSD-SOCKETS-ADDRINFO :ASDF3.3 :ASDF3.2 :ASDF3.1 :ASDF3 :ASDF2
+              :ASDF :OS-UNIX :NON-BASE-CHARS-EXIST-P :ASDF-UNICODE :X86-64 :64-BIT :ANSI-CL
+   :COMMON-LISP :ELF :GENCGC :IEEE-FLOATING-POINT :LINUX :LITTLE-ENDIAN
+   :PACKAGE-LOCAL-NICKNAMES :SB-CORE-COMPRESSION :SB-LDB :SB-PACKAGE-LOCKS
+   :SB-THREAD :SB-UNICODE :SBCL :UNIX)
+  #+END_SRC 
+
+  3. Lisp dependencies should be visible at ~\~/common-lisp/cl-webkit$ ls -l~
+
+  4. Reinstalling depencies from Gnu/Linux, FreeBSD GTK dependencies
+should return "some-dependency is already the newest verion".
+
+  5. After executing the following, the browser should be running:
+
+     #+BEGIN_SRC lisp
+     * (require :asdf)
+     NIL
+     * (asdf:load-asd "/home/pedro/common-lisp/nyxt/nyxt.asd")
+     #<ASDF/FIND-SYSTEM:DEFINE-OP >
+     #<ASDF/PLAN:SEQUENTIAL-PLAN {1003F64DD3}>
+     * (ql:quickload :nyxt/gi-gtk)
+     To load "nyxt/gi-gtk":
+     Load 1 ASDF system:
+     nyxt/gi-gtk
+                                             ; Loading "nyxt/gi-gtk"
+     .....................................
+     (:NYXT/GI-GTK)
+
+     * (nyxt:start)
+     <INFO> [23:19:32] Listening to socket "/run/user/1000/nyxt/nyxt.socket".
+     Nyxt version 2.0.0
+     <INFO> [23:19:32] Loading Lisp file "/home/pedro/.config/nyxt/auto-config.lisp".
+     NIL
+     #+END_SRC 
+
+The second command was
+~(asdf:load-asd "/home/pedro/common-lisp/nyxt/nyxt.asd")~ but this was
+made to run on my machine. In your environment you need to adapt
+~(asdf:load-asd "/full/path/to/nyxt.asd")~ to your circumstances.
+
+At this point, if everything went well, you need to seeing Nyxt
+running. This version will be different than the stable one.
+
+* Time for action
+
+Now, 
