@@ -1,0 +1,111 @@
+#+TITLE: "Why should I use Nyxt if I can use Vimium?"
+#+AUTHOR: By John Mercouris and Pedro Delfino
+#+FILETAGS: :feature:
+ 
+* The infamous question
+
+After introducing Nyxt to some people, it is frequent to listen to
+questions such as: /Why should I use Nyxt if I can use Vimium (or 'Vimari
+'Vrome 'Chromemacs 'Vimperator ...) in my-favorite-popular-web-browser?/
+
+This question is reasonable. Web browsers and their extensions are part of one's
+daily habits. If one happens to be productive using them, it just makes
+sense to be really careful before trying something new.
+
+In order to answer this frequent question, we decided to list four
+points that show the difference between Nyxt and popular plug-ins
+such as:
+
+- [[https://github.com/philc/vimium][Vimium]];
+- [[https://github.com/tridactyl/tridactyl][Tridactyl]] (an evoluion of [[https://en.wikipedia.org/wiki/Vimperator][Vimperator]] and [[https://en.wikipedia.org/wiki/Pentadactyl][Pentadactyl]]);
+- [[https://github.com/brookhong/Surfingkeys][Surfingkeys]];
+- [[https://chrome.google.com/webstore/detail/cvim/ihlenndgcmojhcghmfjfneahoeklbjjh?hl=en][cVim]];
+- [[https://chrome.google.com/webstore/detail/cvim/ihlenndgcmojhcghmfjfneahoeklbjjh?hl=en][Vimari]];
+- [[https://github.com/jinzhu/vrome][Vrome]];
+- [[https://github.com/maeda-kazuya/chromemacs][Chromemacs]];
+- [[https://github.com/ueokande/vim-vixen][Vim Vixen]];
+- [[Vimac]];
+- [[https://vieb.dev/][Vieb]];
+- [[https://github.com/zsims/hunt-and-peck][Hunt-n-peck]];
+- [[https://github.com/gdh1995/vimium-c#readme][Vimium-C]];
+- [[https://github.com/flippidippi/sVim][sVim]];
+- [[https://github.com/reindert-vetter/spotlink/][Spotlink]];
+- [[https://github.com/dwarvesf/VimMotionApp][VimMotion]]
+- [[https://github.com/akhodakivskiy/VimFx][VimFx]];
+- [[https://github.com/Rleahy22/Mouseless-Browsing][Mouseless Browsing]];
+- [[https://github.com/glacambre/firenvim][Firevin]];
+
+All of them try to bring the Vim/Emacs philosophy to mainstream web
+browsers. Our goal is not to demean other projects but clarify the
+contrast between Nyxt and those plug-ins. Each point will be
+illustrated by useful practical examples.
+
+* Differences
+
+1. Nyxt is fully customizable and extensible, plug-ins are
+   not. Examples:
+   + In Nyxt, users can customize the alphabet used for
+     link-hinting. It does not need to be the American alphabet. If the
+     user is using a popular "QWERTY" keyboard, it could be changed to
+     "qwertyasdfgzxcvb" to provide more ergonomics. Same for Dvorak keyboard.
+   + It is possible to create different modes and each mode could have
+     its own keybindings. Example, an user could define three different
+     modes using the same keybindings (e.g. "Control-x") such as
+     "gaming-mode", "gmail-mode", and "documentation-mode". Depending on
+     the mode enabled, "Control-x" would execute a different command. It
+     would even be possible to create some hooks, so that depending on
+     the website visited, an especific mode would be automatically enabled.
+   + In addition to being fully customizable, Nyxt has the capability
+     of being modified and tweaked /while/ it is running. You don't
+     have to restart Nyxt to test your changes!
+
+
+2. Nyxt can perform additional computation in separate background
+   threads while plug-ins cannot. Examples:
+   + Having multiple plug-ins make regular browsers (Firefox, Chrome,
+     Safari, and etc) slower when doing the rendering. In Nyxt,
+     adding more commands, modes, and hooks won't make it slower.
+   + Suppose someone using regular browsers wished to extract keywords
+     from multiple tabs opened. That would be computationally
+     expensive. Nyxt background threads do not slow it down like
+     plugins do in other browsers.
+
+3. Nyxt can interact and integrate with the user's operating system to run
+   external programs or scripts while plug-ins cannot. Example:
+   + Nyxt connects to the user's terminal. Hence, while visiting a
+     GitHub repository in the browser it is possible to execute a ~git
+     clone~ command in Nyxt that has the same effect as it would be
+     have if executed in the terminal. Nyxt asks for the destination
+     and then runs asynchronously the process of cloning Git
+     repositories to disk. Thus, Nyxt can easily be an interface to
+     the host system.
+   + Another example is using [[https://github.com/rg3/youtube-dl/][youtube-dl]] as described in this previous
+     [[https://nyxt.atlas.engineer/article/command-line-programs.org][article]]. It is possible and easy to turn a command-line code into
+     a Nyxt browser command to download videos.
+
+4. Nyxt is programmed in Common Lisp, plug-ins are in JavaScript.
+   + Link hinting provides a practical illustration. In Nyxt, the
+     contents of the link hints is collected and, after querying the
+     page, all clickable elements are returned as a list in Common
+     Lisp. Then, all sorts of algorithms from fuzzy matching on the
+     URLs becomes possible outside of Javascript. This process has
+     multithread nature which is simply not possible strictly in
+     Javascript. Well, using the Turing Equivalency, it is probably
+     theoritically possible to do it in Javascript. Exactly as it is
+     possible to use the violin to knock it and make sound as a
+     percussion instrument. Feasible, but not easy or appropriate.
+
+   + In Nyxt, it is possible and cheap computationally to see all the
+     links that exist in all of the user's buffers (tabs).
+
+* Conclusion
+
+Plug-ins are only part of the equation. Usually, they barely cover
+link-hinting, keybindings, and navigation. Moreover, they do it in a
+simplified way.
+
+
+** Credits
+
+The idea for this article emerged after a conversation with Felipe
+César ([[https://www.google.com/search?q=felps+io+software+developer&safe=active&client=ubuntu&hs=yyT&channel=fs&sxsrf=AOaemvLN1MlvfjD5mbPTqQERVKKLoAymFA%3A1632250425426&ei=OSpKYcWUGYDR1sQPo8GM4Ag&oq=felps+io+software+developer&gs_lcp=Cgdnd3Mtd2l6EAMyBwghEAoQoAE6BQghEKABSgQIQRgAUMYCWLQoYLUpaABwAHgAgAHpBIgBkhWSAQU0LTEuNJgBAKABAcABAQ&sclient=gws-wiz&ved=0ahUKEwiFlarW3pDzAhWAqJUCHaMgA4wQ4dUDCA0&uact=5&ssui=on][@felps]]). Thank you for inspiring us to write this down :)
