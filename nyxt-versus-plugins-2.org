@@ -19,13 +19,13 @@ such as:
 - [[https://github.com/philc/vimium][Vimium]];
 - [[https://github.com/tridactyl/tridactyl][Tridactyl]] (an evoluion of [[https://en.wikipedia.org/wiki/Vimperator][Vimperator]] and [[https://en.wikipedia.org/wiki/Pentadactyl][Pentadactyl]]);
 - [[https://github.com/brookhong/Surfingkeys][Surfingkeys]];
-- [[https://chrome.google.com/webstore/detail/cvim/ihlenndgcmojhcghmfjfneahoeklbjjh?hl=en][cVim]];
-- [[https://chrome.google.com/webstore/detail/cvim/ihlenndgcmojhcghmfjfneahoeklbjjh?hl=en][Vimari]];
+- [[https://github.com/1995eaton/chromium-vim][cVim (chromium Vim)]];
+- [[https://github.com/televator-apps/vimari][Vimari]];
 - [[https://github.com/jinzhu/vrome][Vrome]];
 - [[https://github.com/maeda-kazuya/chromemacs][Chromemacs]];
 - [[https://github.com/ueokande/vim-vixen][Vim Vixen]];
-- [[Vimac]];
-- [[https://vieb.dev/][Vieb]];
+- [[https://vimacapp.com/][Vimac]];
+- [[https://github.com/sponsors/Jelmerro][Vieb]];
 - [[https://github.com/zsims/hunt-and-peck][Hunt-n-peck]];
 - [[https://github.com/gdh1995/vimium-c#readme][Vimium-C]];
 - [[https://github.com/flippidippi/sVim][sVim]];
@@ -43,7 +43,7 @@ illustrated by useful practical examples.
 * Differences
 
 1. Nyxt is fully customizable and extensible, plug-ins are
-   not. Examples:
+   not. Practical examples:
    + In Nyxt, users can customize the alphabet used for
      link-hinting. It does not need to be the American alphabet. If the
      user is using a popular "QWERTY" keyboard, it could be changed to
@@ -59,9 +59,8 @@ illustrated by useful practical examples.
      of being modified and tweaked /while/ it is running. You don't
      have to restart Nyxt to test your changes!
 
-
 2. Nyxt can perform additional computation in separate background
-   threads while plug-ins cannot. Examples:
+   threads while plug-ins cannot. Practical examples:
    + Having multiple plug-ins make regular browsers (Firefox, Chrome,
      Safari, and etc) slower when doing the rendering. In Nyxt,
      adding more commands, modes, and hooks won't make it slower.
@@ -71,7 +70,7 @@ illustrated by useful practical examples.
      plugins do in other browsers.
 
 3. Nyxt can interact and integrate with the user's operating system to run
-   external programs or scripts while plug-ins cannot. Example:
+   external programs or scripts while plug-ins cannot. Practical examples:
    + Nyxt connects to the user's terminal. Hence, while visiting a
      GitHub repository in the browser it is possible to execute a ~git
      clone~ command in Nyxt that has the same effect as it would be
@@ -83,7 +82,8 @@ illustrated by useful practical examples.
      [[https://nyxt.atlas.engineer/article/command-line-programs.org][article]]. It is possible and easy to turn a command-line code into
      a Nyxt browser command to download videos.
 
-4. Nyxt is programmed in Common Lisp, plug-ins are in JavaScript.
+4. Nyxt is programmed in Common Lisp, plug-ins are in
+     JavaScript. Practical examples:
    + Link hinting provides a practical illustration. In Nyxt, the
      contents of the link hints is collected and, after querying the
      page, all clickable elements are returned as a list in Common
@@ -92,8 +92,8 @@ illustrated by useful practical examples.
      multithread nature which is simply not possible strictly in
      Javascript. Well, using the Turing Equivalency, it is probably
      theoritically possible to do it in Javascript. Exactly as it is
-     possible to use the violin to knock it and make sound as a
-     percussion instrument. Feasible, but not easy or appropriate.
+     possible to use the violin to knock on it and make sound as a
+     percussion instrument. Feasible, but not easy, appropriate or elegant.
 
    + In Nyxt, it is possible and cheap computationally to see all the
      links that exist in all of the user's buffers (tabs).
@@ -103,7 +103,6 @@ illustrated by useful practical examples.
 Plug-ins are only part of the equation. Usually, they barely cover
 link-hinting, keybindings, and navigation. Moreover, they do it in a
 simplified way.
-
 
 ** Credits
 
