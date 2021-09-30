@@ -1,0 +1,274 @@
+#+TITLE: Getting Started on Nyxt Hacking: #1 Episode
+#+AUTHOR: By Pedro Delfino
+#+FILETAGS: :lisp:
+
+* The series
+
+Hacking is an art and Nyxt hacking is one of its kind. Nyxt could be
+defined as Minecraft for web browsing in the sense that it is an open
+world. Being a fully computable environment, the constraints are much
+more on the hacker's creativity than in the system itself.
+
+Some Nyxt users have already done impressive work. For instance, the
+[[https://github.com/atlas-engineer/nyxt/blob/master/documents/EXTENSIONS.org][extensions]] and config files exposed in [[https://discourse.atlas.engineer/t/casually-showing-off-my-config/74][discourse's Configuration
+Exposè]].
+
+Unfortunately, not all users are that independent and
+knowledgeable. Thus, this article has a beginner friendly approach. It
+assumes zero to little knowledge in the Nyxt universe, which involves
+the Nyxt source code itself, Common Lisp, SBCL, and Emacs. However, it
+does assume prior knowledge of Nyxt as a Graphical User Interface
+(GUI) user. Hence, the reader needs to have basic understanding on how
+to execute commands and navigate using Nyxt.
+
+In case you haven't reached that level, it is easy to catch-up. Start
+Nyxt, look for the "Tutorial" button on the starting page. Or click on
+the Execute icon (𝄘) and type "Tutorial".  Then, read the tutorial,
+especially the first half.
+
+This is the first article of a five component series. Here, a
+bookmarklet is going to be built using the REPL built-in on Nyxt. On
+the second episode, the same bookmarklet is going to be built but
+using SBCL straight from the command line. On the third article,
+again, the same bookmarklet will be added but using Emacs powered with
+Slime and Vim powered with Vlime. The objective of the first three
+articles is to isolate some variables and introduce newcommers to the
+multiple ways and environments available to tweak Nyxt.
+
+In the four article of the series, a command (instead of
+bookmarklet-command) will be constructed to achieve the same result of
+the bookmarklet. This version will be more lispy than the previous
+javascripty ones. And, finally, on the fifth and last article, a mode
+will be made to achieve the same goal intended in previous articles.
+
+All the five constructions described in the articles will be under the
+same challenge: hacking YouTube videos so that they can be played in a
+faster speed than what is  allowed by YouTube's GUI.
+
+Why using YouTube as a guinea pig? Well, firstly, because it fullfils
+the definition of what is a [[http://www.paulgraham.com/gba.html][hack]]:
+
+#+BEGIN_QUOTE 
+It's called a hack when you do something in an ugly way. But when you
+do something so clever that you somehow beat the system, that's also
+called a hack. -- Paul Graham
+#+END_QUOTE
+
+Secondly, because many new Nyxt users have problems loading
+videos. This is so common that the Manual has a section on
+Troubleshooting. Thus, let's show that it is indeed possible to watch
+YouTube videos in Nyxt and even hack them. Thirdly, because YouTube is
+a strong platform and even them need to bow for power users. Lastly,
+but not least, because this was my own very [[https://discourse.atlas.engineer/t/almost-hacking-youtube-videos-speed-on-nyxt/117][first]] hack as a Nyxt user
+:)
+
+
+* Time for action
+
+Now, it is time to really start the fun. Follow the instructions below:
+pp
+1. Load an Youtube video such as this [[https://www.youtube.com/watch?v=SVteSEjKytw][one]]. To do that just
+   =execute-command= called =set-url=. Then insert the string
+   "https://www.youtube.com/watch?v=SVteSEjKytw" and press "Enter".
+
+2. Notice that Youtube's webpage shows possibles speeds of
+   reproduction on the /Settings/. The /playback speeds/ available
+   are: 0.25, 0.5, 0.75, Normal, 1.25, 1.5, 1.75, and 2.0. The default
+   is /Normal/.
+
+3. Open the inspector. To do that =execute-command= called
+   =open-inspector=. Click on the /Console/ button.
+
+4. Now, insert this code snippet of Javascript in the inspector's /Console/: 
+   #BEGIN_SRC javascript
+   (function() {
+    const rate = prompt('Set the new playback rate', 2.5);
+    if (rate != null) {
+        const video =
+            document.getElementsByTagName('video')[0];
+        video.playbackRate = parseFloat(rate);
+    }})();
+   #END_SRC   
+   This JS code is a self executing anonymous function that, first,
+   prompts the user for data (a new playback rate) and then use the
+   answer to set the new playback rate for the video.
+
+5. Do some tests with numbers. For instance, test inputting the
+   (decimal) number of the beast: 0.666. After pressing enter and
+   playing the video, you will notice the youtuber is speaking slower
+   than usual. 
+
+6. Now, let's get into the real transgression. Let's play videos in a
+   faster speed than the one allowed by Youtube. Thus, try inputting
+   values beyond 2, such as 2.5, 3, or 4. For some videos, 4 is the
+   final threshold due to audio quality. After this value, the sound
+   is muted by the video is passing in faster speeds. In others
+   videos, such as the example we are using, it is possible to use
+   higher values, such as 10x. But, unless you have super powers, is
+   pretty hard to understand.
+
+As you probably realized, you have just hacked Youtube's UI. Now, you
+have a more granularity controling the speed and you have new upper
+bound limits.
+
+* Bookmarklets are historical hacks
+
+The funny part about this being a hack is that bookmarklets themselves
+look like historical hacks. According to [[https://en.wikipedia.org/wiki/Bookmarklet][Wikipedia]], bookmarklets are a
+bookmark stored in a web browser that contains JavaScript commands
+adding new features to the browser. Bookmarklets are JavaScripts code
+stored as either the URL of a bookmark or as a hyperlink on a web
+page. For this tutorial, the former application is the case.
+
+Regardless of whether bookmarklet utilities are stored as bookmarks or
+hyperlinks, they add one-click functions to a browser or web
+page. When clicked, a bookmarklet performs one of a wide variety of
+operations, such as running a search query or extracting data from a
+table. For example, clicking on a bookmarklet after selecting text on
+a webpage could run an Internet search on the selected text and
+display a search engine results page.
+
+* The Nyxt REPL
+
+Nyxt is a fully computable environment. Hence, it includes a Common
+Lisp REPL (Read Eval Print Loop), a powerful tool that behaves as a
+"shell language" and works as the cornerstone of [[https://en.wikipedia.org/wiki/Interactive_programming][interactive programming]].
+
+In the REPL, it is possible to do arithmetic operations such as
+#+BEGIN_SRC lisp
+> (+ 1 2)
+3
+#+END_SRC
+
+(insert image of Nyxt REPL)
+
+The NYXT's GUI REPL has the Nyxt lisp image running which means this
+is an interface to the Nyxt source code running live. Hence, beyond
+just doing arithmetic functions, users can also change the name of
+commands. Or create new ones!
+
+In order to use the Common Lisp REPL with the Nyxt image running, press
+=execute-command= and choose =lisp-repl=. Try inserting some
+arithmetic expressions. And remember that Lisp uses [[https://en.wikipedia.org/wiki/Polish_notation][Polish
+Notation]]. It feels a bit weird, but it is quite handy because you do
+not need to repeat operators, e.g. =(1+2+3+4+5)= in most languages
+becomes =(+ 1 2 3 4 5)= in polish notation, among other advantages.
+
+For this tutorial, we are going to make the Javascript code mentioned
+above into a bookmarklet command. For that we will need a macro called 
+=define-bookmarklet-command=. This macro receives three arguments: (i)
+the name of the bookmarklet; (ii) a string with its documentation;
+and, (iii) the Javascript code.
+
+For us, this means:
+
+#+BEGIN_SRC lisp
+
+(define-bookmarklet-command hack-youtube-speed 
+  "Tweak Youtube videos' speed beyond the UI options and limits." 
+  "(function() {
+    const rate = prompt('Set the new playback rate', 2.5);
+    if (rate != null) {
+        const video =
+            document.getElementsByTagName('video')[0];
+        video.playbackRate = parseFloat(rate);
+    }})();")
+
+#+END_SRC
+
+Decomposing what was written, =define-bookmarklet-command= is a macro
+being invoked. After it, there is =hack-youtube-speed= which is the
+name of our new command. Below it, there is a documentation string
+explaining what the command does. Finally, the Javascript code is
+passed as a string argument to the macro function call. 
+
+It must be hilighted that macros are a powerful and famous part of
+Lisp languages. But it is a complex topic, since there are whole [[https://en.wikipedia.org/wiki/On_Lisp][books]]
+only about it. What you need to know is that macros expand the syntax
+of the Common Lisp language.
+ 
+Now, the /gran finale/ is inserting this new bookmarlet command in
+Nyxt. To do that, you need to eval the expression in the REPL.
+
+(insert image of the macro command being evalued)
+
+After being evalued, it becomes part of the lisp image running
+Nyxt. Nyxt is all about states which is an inviting scenario for
+hacking. Thus, after being evalued, the new command will be listed as
+one of the options, with the name =hack-youtube-speed=.
+
+Now, instead of opening the console, writing pure the 5 lines
+javascript snipet and et cetera, you can just execute the newborn
+command and choose the prefered speed. Congratulations, you have just
+extended Nyxt's commands a little bit! :)
+
+* Make it persistent across sections
+
+You learned how to test things on the console and converting it to a new
+command for Nyxt. However, this new command is not persistent across
+sections. Hence, if you close Nyxt and re-open it, you will not find the command
+created among the options. 
+
+In order to fix it, you should insert the new bookmarklet command
+definition in your init files. Having a file with definitions about
+your configurations is a common approach in classic text editors [[https://en.wikipedia.org/wiki/Vim_(text_editor)][Vim]]
+and [[https://en.wikipedia.org/wiki/Emacs][Emacs]], great inspirations for Nyxt.
+
+Your Nyxt init file will probably be in a folder like
+=home/your-user-name/.config/nyxt=. But you do not need to guess or
+even find it manualy. Nyxt itself is capable of identifying precisely
+where the file is.
+
+Using the Nyxt REPL again, eval the following expression:
+
+#+BEGIN_SRC 
+> (expand-path *init-file-path*)
+#+END_SRC
+
+In my case, the REPL returns
+=/home/pedro/.config/nyxt/init.lisp=. Your result will be slightly
+different.
+
+After finding the file location, you need to edit it to append the
+newly created command. You can use whatever editor you want for this
+action. But, guess what? You can use Nyxt :)
+
+As said before, it is a fully computable environment. Thus, just
+execute command =open-new-editor-with-file=, add the bookmarklet
+command definition discussed before:
+
+#+BEGIN_SRC lisp 
+(define-bookmarklet-command hack-youtube-speed 
+  "Tweak Youtube videos' speed beyond the UI options and limits." 
+  "(function() {
+    const rate = prompt('Set the new playback rate', 2.5);
+    if (rate != null) {
+        const video =
+            document.getElementsByTagName('video')[0];
+        video.playbackRate = parseFloat(rate);
+    }})();")
+#+END_SRC
+
+Then, save the changes with =editor-write-file=. Now, close Nyxt and
+re-start it. Then, execute command and type =hack...=. Soon, you will
+the newly created command. Voialá, your creation is now storage
+persistent!
+
+* The Next episode
+On the next episode of the series, we are going to have a lower level
+approach, tweaking to do exactly the same but in a different
+environment, using the command line interface running the SBCL
+prompt. Stay tunned and may the power of Nyxt be with you!
+
+* Disclaimer
+
+There are multiple ways to do certain things in Nyxt and to use
+certain tools. To make things simple, this will be an opinionated
+series of articles striking for beginner friendliness. It is a jungle trail but
+you can always go into the wild.
+
+Emacs is a particularly sensitive topic. Most Nyxt hackers will
+probably end up using Emacs (or Vim). However, Emacs has a steep
+learning curve. Thus, the series will offer explanations with and
+without Emacs. If you want to become a serious Nyxt hacker, take Emacs
+as your main tool.
