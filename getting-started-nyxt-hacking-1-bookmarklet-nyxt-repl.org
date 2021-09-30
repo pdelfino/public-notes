@@ -80,16 +80,16 @@ pp
    =open-inspector=. Click on the /Console/ button.
 
 4. Now, insert this code snippet of Javascript in the inspector's /Console/: 
-   
-   #BEGIN_SRC javascript
-      (function() {
+
+#+BEGIN_SRC javascript
+(function() {
        const rate = prompt('Set the new playback rate', 2.5);
        if (rate != null) {
            const video =
                document.getElementsByTagName('video')[0];
            video.playbackRate = parseFloat(rate);
        }})();
-   #END_SRC   
+#+END_SRC   
 
    This JS code is a self executing anonymous function that, first,
    prompts the user for data (a new playback rate) and then use the
