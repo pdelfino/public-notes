@@ -1,6 +1,6 @@
 # public-notes
 
-![Portrait of the Postman Joseph Roulin](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Vincent_van_Gogh_-_Portret_van_de_postbode_Joseph_Roulin.jpg/960px-Vincent_van_Gogh_-_Portret_van_de_postbode_Joseph_Roulin.jpg)
+![Portrait of the Postman Joseph Roulin](./painting.jpg)
 
 *"Portrait of the Postman Joseph Roulin" (1888) by Vincent van Gogh — [Wikipedia](https://en.wikipedia.org/wiki/Portraits_of_the_Postman_Joseph_Roulin)*
 
